@@ -1,0 +1,98 @@
+{% include 'base.html.twig' %}
+<link rel="stylesheet" href="{{asset("css/kanban.css")}}">
+<body>
+  <!-- Simple MDL Progress Bar -->
+<div>
+  <div class="test">
+    <div id="p1" class="mdl-progress mdl-js-progress"></div>
+          <h1><i class="material-icons">check</i> To do list</h1>
+    </div>
+    <menu class="kanban"><button><i class="material-icons">settings</i></button> <button><i class="material-icons">chevron_left</i></button>
+      <button class="viewkanban"><i class="material-icons ">view_column</i></button>
+      <button class="viewlist"><i class="material-icons">view_list</i></button>
+      <button><i class="material-icons">playlist_add</i> Add new Column</button>
+    </menu>
+  </div>
+  <div class="dd">
+    <ol class="kanban To-do">
+      <div class="kanban__title">
+        <h2> A Faire</h2>
+      </div>
+      {% for tache in taches %}
+      {% if tache.IdStatut == "A faire" %}
+      <li class="dd-item" data-id="1">
+        <h3 class="title dd-handle" >{{tache.titre}}</h3>
+        <div class="text" contenteditable="true">
+          {{tache.description}}
+        </div> 
+        <i class="material-icons" id="label blue">label</i>
+        <div class="actions">
+          <div class="text"><i class="fa-solid fa-pen"></i><a href="">Edit</a></div>
+        </div>
+      </li>
+      {% endif %}
+      {% endfor %}
+      <div class="actions">
+        <button class="addbutt"><i class="fa-solid fa-plus"></i><a href="{{ path('app_taches_new')}}"> Add new</a></button>
+      </div>
+    </ol>
+    <ol class="kanban progress">
+      <h2>En Cours</h2>
+      {% for tache in taches %}
+        {% if tache.IdStatut == "En Cours" %}
+        <li class="dd-item" data-id="5">
+        <h3 class="title dd-handle">{{tache.titre}}</h3>
+          <div class="text" contenteditable="true">{{tache.description}}</div><div class="actions">
+          <i class="material-icons">palette</i><i class="material-icons">edit</i><i class="material-icons">insert_link</i><i class="material-icons">attach_file</i></div>
+        
+        </li>
+        {% endif %}
+      {% endfor %}
+      <div class="actions">
+        <button class="addbutt"><i class="fa-solid fa-plus"></i><a href="{{ path('app_taches_new')}}"> Add new</a></button>
+      </div>
+    </ol>
+    <ol class="kanban  Done">
+      <h2>A Tester</h2>
+      {% for tache in taches %}
+        {% if tache.IdStatut == "A tester" %}
+        <li class="dd-item" data-id="5">
+          <h3 class="title dd-handle">{{tache.titre}}</h3>
+          <div class="text" contenteditable="true">{{tache.description}}</div><div class="actions">
+          <i class="material-icons">palette</i><i class="material-icons">edit</i><i class="material-icons">insert_link</i><i class="material-icons">attach_file</i></div>
+        
+        </li>
+        {% endif %}
+      {% endfor %}
+      <div class="actions">
+        <button class="addbutt"><i class="fa-solid fa-plus"></i><a href="{{ path('app_taches_new')}}"> Add new</a></button>
+      </div>
+    </ol>
+    <ol class="kanban Gone">
+      <h2>Faits</h2>
+      {% for tache in taches %}
+        {% if tache.IdStatut == "A tester" %}
+      <li class="dd-item" data-id="5">
+        <h3 class="title dd-handle">{{tache.titre}}</h3>
+          <div class="text" contenteditable="true">{{tache.description}}</div>
+          <div class="actions">
+          <i class="material-icons">palette</i><i class="material-icons">edit</i><i class="material-icons">insert_link</i><i class="material-icons">attach_file</i></div>
+        
+      </li>
+      {% endif %}
+      {% endfor %}
+      <div class="actions">
+        <button class="addbutt"><i class="fa-solid fa-plus"></i><a href="{{ path('app_taches_new')}}"> Add new</a></button>
+      </div>
+    </ol>
+  </div>
+</div>
+  <script>
+    document.querySelector('#p1').addEventListener('mdl-componentupgraded', function() {
+      this.MaterialProgress.setProgress(44);
+    });
+  </script><div class="kanban__title">
+  <script src="{{asset("js/script.js")}}"></script>
+  <script src="https://kit.fontawesome.com/002ad39ea0.js" crossorigin="anonymous"></script>
+</body>
+</html>

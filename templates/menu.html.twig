@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ path('home')}}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ path('app_projets_index')}}">Projets</a>
+        </li>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ path('app_logout')}}">Deconnexion</a>
+        </li>
+        {% else %}
+							<li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ path('app_register')}}">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ path('app_login')}}">Connexion</a>
+        </li>
+				{% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
